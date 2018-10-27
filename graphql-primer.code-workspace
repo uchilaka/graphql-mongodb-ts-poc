@@ -3,12 +3,17 @@
     "path": "."
   }],
   "settings": {
+    "editor.detectIndentation": false,
+    "editor.renderIndentGuides": true,
+    "editor.autoIndent": true,
+    "editor.tabSize": 4,
     "editor.fontSize": 13,
     "window.zoomLevel": 0.5,
     "terminal.integrated.fontSize": 11,
     "eslint.enable": false,
     "tslint.enable": true,
     "tslint.autoFixOnSave": true,
+    //// Prettier settings
     "prettier.tslintIntegration": true,
     "prettier.trailingComma": "es5",
     // "files.autoSave": "off",
