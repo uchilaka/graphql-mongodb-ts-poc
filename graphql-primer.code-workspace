@@ -1,0 +1,60 @@
+{
+  "folders": [{
+    "path": "."
+  }],
+  "settings": {
+    "editor.fontSize": 13,
+    "window.zoomLevel": 0.5,
+    "terminal.integrated.fontSize": 11,
+    "eslint.enable": false,
+    "tslint.enable": true,
+    "tslint.autoFixOnSave": true,
+    "prettier.tslintIntegration": true,
+    "prettier.trailingComma": "es5",
+    // "files.autoSave": "off",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/*.js": {
+        "when": "$(basename).ts"
+      },
+      "**/*.js.map": {
+        "when": "$(basename)"
+      }
+    },
+    //// Beautify settings
+    // Documentation on configurations: https://github.com/HookyQR/VSCodeBeautify/blob/master/Settings.md
+    "beautify.config": {
+      "indent_size": 2,
+      "wrap_line_length": 120
+    },
+    "beautify.ignore": ["*/test.js", "**/spec/*", "**/test/**/*", "**/*.spec.js"],
+    "beautify.language": {
+      "js": {
+        "type": [
+          "javascript",
+          "json",
+          "jsonc"
+        ],
+        "filename": [
+          ".jshintrc",
+          ".jsbeautifyrc"
+        ],
+        "ext": [
+          "js", "json"
+        ]
+      },
+      "css": [
+        "css",
+        "scss"
+      ],
+      "html": [
+        "htm",
+        "html"
+      ]
+    }
+  }
+}
