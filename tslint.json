@@ -13,7 +13,8 @@
     //     "import-sources-order": "lowercase-last"
     //   }
     // ]
-    "ordered-imports": true
+    "ordered-imports": false,
+    "object-literal-sort-keys": false
   },
   "rulesDirectory": []
 }
