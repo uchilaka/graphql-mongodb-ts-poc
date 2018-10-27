@@ -1,7 +1,9 @@
+import _ from "lodash";
 import { Friend } from '../models';
 import memDb from '../memdb';
 
-export const getFriend = ({ id }) => {
+export const getFriend = (memPayload, payload) => {
+    const { id } = _.isEmpty(memPayload) ? payload : memPayload;
     if (typeof id === 'string') {
         return new Friend(id, memDb[id]);
     }
