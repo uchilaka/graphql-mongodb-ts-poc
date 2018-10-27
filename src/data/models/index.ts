@@ -12,6 +12,10 @@ interface IEmail {
     email: string;
 }
 
+export interface ISampleData {
+    friend: Friend;
+}
+
 export class Friend {
     id: string;
     firstName: string;

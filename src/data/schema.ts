@@ -1,6 +1,8 @@
-import { buildSchema } from "graphql";
+import { buildSchema, GraphQLSchema } from "graphql";
+import { resolvers } from "./resolvers";
+import { makeExecutableSchema } from "graphql-tools";
 
-const schema = buildSchema(`
+const typeDefs = `
   type SampleData {
     friend: Friend
   }
@@ -26,8 +28,8 @@ const schema = buildSchema(`
   }
 
   type Query {
+    getSamples: SampleData,
     getFriend(id: ID): Friend
-    Samples: SampleData
   }
 
   input FriendInput {
@@ -43,6 +45,10 @@ const schema = buildSchema(`
   type Mutation {
     createFriend(input: FriendInput): Friend
   }
-`);
+`;
 
-export default schema;
+// Full-featured, persistent schema
+export const schema: GraphQLSchema = makeExecutableSchema({ typeDefs, resolvers });
+
+// In-memory schema
+export const memSchema = buildSchema(typeDefs);

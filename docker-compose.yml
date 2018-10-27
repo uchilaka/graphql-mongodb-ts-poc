@@ -1,0 +1,28 @@
+version: "3.1"
+
+services:
+  gql-mongo:
+    image: mongo:3.6
+    container_name: gql-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: test
+    volumes:
+      - ./data/mongodb:/data/db
+    ports:
+      - 27017:27017
+
+  # https://hub.docker.com/_/mongo-express/
+  mongo-express:
+    image: mongo-express:0.49
+    container_name: gql-mongo-ui
+    restart: unless-stopped
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: gql-mongo
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: test
+    depends_on:
+      - gql-mongo
