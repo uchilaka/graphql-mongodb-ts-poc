@@ -1,6 +1,6 @@
 import graphQLHTTP from "express-graphql";
-import { memSchema, schema } from '../data/schema';
-import { Samples, createFriend, getFriend } from "../data/resolvers";
+import { memSchema, schema } from '../data/mem/schema';
+import { Samples, createFriend, getFriend } from "../data/mem/resolvers";
 
 export const initMemSchema = () => graphQLHTTP({
     graphiql: true,
