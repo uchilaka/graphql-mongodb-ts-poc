@@ -30,3 +30,5 @@ Aliens.sync({ force: true }).then(() => {
     });
   });
 });
+
+export { sqlite3Middleware } from "./middleware";
