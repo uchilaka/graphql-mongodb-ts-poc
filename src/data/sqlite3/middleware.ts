@@ -9,7 +9,7 @@ const route = [
   }
 ];
 
-module.exports = route;
+// module.exports = route;
 
 export const sqlite3Middleware = route;
 

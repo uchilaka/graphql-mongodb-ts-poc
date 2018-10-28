@@ -1,3 +1,4 @@
+import "colors";
 import express from "express";
 import memMiddleware from "./data/mem/middleware";
 import { mongoDbMiddleware } from "./data/mongo";
@@ -20,5 +21,7 @@ app.use("/mongo/graphql", mongoDbMiddleware);
 app.use("/graphql", memMiddleware);
 
 app.listen(PORT, () =>
-  console.log(`Running server on port localhost:${PORT}/graphql`)
+  console.log(
+    ["Running server on", `localhost:${PORT}/graphql`.bgMagenta.black].join(" ")
+  )
 );
