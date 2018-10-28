@@ -1,6 +1,6 @@
 # A GraphQL Primer - With TypeScript
 
-I wrote this project following along on the course **GraphQL Essentials Training** by [Emmanuel Henri](https://www.lynda.com/Emmanuel-Henri/6037653-1.html), while figuring out the tweaks needed to write it all in TypeScript instead.
+I'm writing this project following along on the course **GraphQL Essentials Training** by [Emmanuel Henri](https://www.lynda.com/Emmanuel-Henri/6037653-1.html), while figuring out the tweaks needed to write it all in TypeScript instead.
 
 ## The Course
 
@@ -15,6 +15,8 @@ A few notes on the design patterns of the project (heavily inspired by that of t
 - **Models** are the classes, interfaces, enums etc. The structure that enables the creation and management of type-checked, apt data objects.
 - **Middleware** are functionality "hooks" i.e. when you are ready to start implementing stuff like authentication into the workflow for any one of your "resolvers", a middleware is the (ExpressJS) pattern that supports that kind of enhancement.
 - **Schema** in our project references all the _stuff_ we need to define to map our (universal) data model to a specific data store. This is where it all comes together - resolvers to do the acutal work for each GraphQL "endpoint" request, interfaces in TypeScript to ensure typechecking keeps us out of trouble, and middleware to expose, secure and support (micro)service APIs for each of the resolvers we have defined in our GraphQL typedefs.
+
+<!-- Emoji: https://emojipedia.org/man-bowing-deeply-type-5/ -->
 
 ## The Stack (G.A.M.E.)
 
