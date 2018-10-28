@@ -20,7 +20,7 @@ A few notes on the design patterns of the project (heavily inspired by that of t
 
 ## The Stack (G.A.M.E.)
 
-When I'm done with my training, and start leveraging these new skills in my future projects, I'll be doing it with the **G**raphQL // **A**ngular // **M**ongoDB // **E**xpressJS (// **D**ocker) stack (The "D" is silent) 🤘🏾🙇🏾‍♂️.
+When I'm done with my training, and start leveraging these new skills in my future projects, I'll be doing it with the **G**raphQL // **A**ngular // **M**ongoDB // **E**xpressJS (// **D**ocker) stack (The "D" is silent) 🤘🏾🙇🏾‍.
 
 ### SQLite3
 
