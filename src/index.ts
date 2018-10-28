@@ -1,6 +1,8 @@
+import "colors";
 import express from "express";
 import memMiddleware from "./data/mem/middleware";
-import mongoMiddleware from "./data/mongo/middleware";
+import { mongoDbMiddleware } from "./data/mongo";
+import { sqlite3Middleware } from "./data/sqlite3";
 
 // create a new express application instance
 const app: express.Application = express();
@@ -11,11 +13,15 @@ app.get("/", (req, res) => {
   res.send("GraphQL is amazing!");
 });
 
-app.use("/mongo/graphql", mongoMiddleware);
+app.use("/sqlite3/graphql", sqlite3Middleware);
+
+app.use("/mongo/graphql", mongoDbMiddleware);
 // app.use("/mem/graphql", memMiddleware);
 
 app.use("/graphql", memMiddleware);
 
 app.listen(PORT, () =>
-  console.log(`Running server on port localhost:${PORT}/graphql`)
+  console.log(
+    ["Running server on", `localhost:${PORT}/graphql`.bgMagenta.black].join(" ")
+  )
 );

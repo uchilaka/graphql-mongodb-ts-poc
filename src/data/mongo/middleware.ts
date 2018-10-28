@@ -16,6 +16,8 @@ const route = [
   })
 ];
 
+export const mongoDbMiddleware = route;
+
 // module.exports = route;
 
 export default route;

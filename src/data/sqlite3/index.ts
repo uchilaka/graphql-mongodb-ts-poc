@@ -21,12 +21,15 @@ export const Aliens = sequelize.define("aliens", {
   planet: { type: Sequelize.STRING }
 });
 
-Aliens.sync({ force: true }).then(() => {
-  _.times(10, (i) => {
+// Use { force: true } to force re-initialization of the DB
+Aliens.sync({ force: false }).then(() => {
+  _.times(5, (i) => {
     Aliens.create({
-      firstName: casual._first_name,
-      lastName: casual._last_name,
-      planet: casual.word
+      firstName: casual._first_name(),
+      lastName: casual._last_name(),
+      planet: casual._word()
     });
   });
 });
+
+export { sqlite3Middleware } from "./middleware";

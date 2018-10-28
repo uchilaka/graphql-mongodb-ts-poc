@@ -1,9 +1,11 @@
-import mongoose from "./mongoose";
 import { GraphQLSchema } from "graphql";
 import { makeExecutableSchema } from "graphql-tools";
+import { IResolverDef, TypeDefs as globalTypeDefs } from "../models";
+// import mongoose from "./mongoose";
+import { Document, Model, mongoose, Schema } from "./mongoose";
+// import { connectedMongoose as mongoose } from "./mongoose";
 // import { definedResolvers } from ".";
-import { resolvers, } from "./resolvers";
-import { TypeDefs as globalTypeDefs, IResolverDef } from "../models";
+import { resolvers } from "./resolvers";
 
 const typeDefs = `
 ${globalTypeDefs}
@@ -17,37 +19,37 @@ schema {
 `;
 
 interface IMongoDef {
-    Friend: mongoose.Model<mongoose.Document>
+  Friend: Model<Document>;
 }
 
 interface ISchemaDef {
-    typeDefs: string;
-    resolvers: IResolverDef
+  typeDefs: string;
+  resolvers: IResolverDef;
 }
 
-const emailSchema = new mongoose.Schema({
-    email: String
+const emailSchema = new Schema({
+  email: String
 });
 
-const friendSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: String,
-    gender: String,
-    age: Number,
-    language: String,
-    emails: [emailSchema]
+const friendSchema = new Schema({
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: String,
+  gender: String,
+  age: Number,
+  language: String,
+  emails: [emailSchema]
 });
 
 export const MongoModel: IMongoDef = {
-    Friend: mongoose.model('friends', friendSchema)
+  Friend: mongoose.model("friends", friendSchema)
 };
 
-export const schema: GraphQLSchema = makeExecutableSchema(<ISchemaDef>{
-    typeDefs,
-    resolvers
-});
+export const schema: GraphQLSchema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+} as ISchemaDef);
 
 export default schema;
