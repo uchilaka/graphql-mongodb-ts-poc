@@ -2,7 +2,8 @@
 /node_modules
 /dist
 
-# MongoDB Express
+# Apps
+/apps
 !/apps/mongo-express
 
 # Database

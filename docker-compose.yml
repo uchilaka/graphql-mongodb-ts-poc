@@ -1,7 +1,8 @@
 version: "3.1"
 
 services:
-  gql-mongo:
+  # MongoDB + GUI Manager
+  mongo:
     image: mongo:3.6
     container_name: gql-mongo
     restart: unless-stopped
@@ -23,11 +24,29 @@ services:
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_SERVER: gql-mongo
+      ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: test
     depends_on:
-      - gql-mongo
-    # command:
-    #   - "sleep 10"
-    #   - "mongo-express"
+      - mongo
+
+  # MySQL DB + GUI Manager
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    container_name: gql-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+
+  mysql-admin:
+    image: adminer
+    container_name: gql-mysql-admin
+    restart: unless-stopped
+    ports:
+      - 8091:8080
+    depends_on:
+      - mysql
