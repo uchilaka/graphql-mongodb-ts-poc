@@ -1,7 +1,7 @@
 import { buildSchema, GraphQLSchema } from "graphql";
 import { resolvers } from "./resolvers";
 import { makeExecutableSchema } from "graphql-tools";
-import { TypeDefs as typeDefs } from '../typedefs';
+import { TypeDefs as typeDefs } from '../models';
 
 // Full-featured, persistent schema
 export const schema: GraphQLSchema = makeExecutableSchema({ typeDefs, resolvers });
