@@ -1,8 +1,14 @@
-import { Friend, ISampleData, Samples } from '../models';
+export { Samples } from '../models';
+import { Samples, IFriend, IResolverDef } from '../models';
 import { MongoModel } from './schema';
 
-export const createFriend = (_root, { input }) => {
-    const newFriend = new MongoModel.Friend(<Partial<Friend>>{
+interface IUniqueUserQuery {
+    email?: string;
+    _id?: string;
+}
+
+export const createFriend = async (_root, { input }): Promise<IFriend> => {
+    const newFriend = new MongoModel.Friend(<Partial<IFriend>>{
         firstName: input.firstName,
         lastName: input.lastName,
         age: input.age,
@@ -14,19 +20,38 @@ export const createFriend = (_root, { input }) => {
 
     return new Promise((resolve, reject) => {
         newFriend.save((err) => {
-            if (err) reject(err);
-            else resolve(newFriend);
+            if (err) return reject(err);    
+            return resolve(newFriend);
         });
     });
 };
 
+export const getFriend = async (_root, { id, email }): Promise<IFriend> => {
+    return new Promise((resolve, reject) => {
+        let predicate: IUniqueUserQuery = {};
+        if (email) {
+            predicate['emails.email'] = email;
+        } else if (id) {
+            predicate._id = id;
+        } else {
+            throw new Error('Either id or email is required');
+        }
+        MongoModel.Friend.findOne(predicate, (err, obj) => {
+            if (err) return reject(err);
+            return resolve(<IFriend>obj);
+        });
+    });
+}
+
 // Map resolver definition(s)
-export const resolvers = {
+export const resolvers: IResolverDef = {
     Query: {
-        getSamples: (): ISampleData => Samples,
-        // getFriend,
+        getSamples: () => Samples,
+        getFriend,
     },
     Mutation: {
         createFriend,
     },
 };
+
+export default resolvers;

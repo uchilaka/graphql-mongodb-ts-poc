@@ -1,8 +1,14 @@
+/bin
 /node_modules
 /dist
 
+# MongoDB Express
+!/apps/mongo-express
+
 # Database
-/data/
+/apps/mongo
+/data/mongodb
+/data/mysql
 
 # Misc
 yarn.lock

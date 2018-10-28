@@ -6,16 +6,18 @@
   "jsRules": {},
   "rules": {
     "no-console": false,
+    "whitespace": [true, "check-module"],
+    "no-irregular-whitespace": true,
     "indent": [true, "spaces", 4],
     "trailing-comma": true,
-    // "ordered-imports": [
-    //   true,
-    //   {
-    //     "import-sources-order": "lowercase-last"
-    //   }
-    // ]
-    "ordered-imports": false,
-    "object-literal-sort-keys": false,
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "lowercase-last"
+      }
+    ],
+    // "ordered-imports": false,
+    "object-literal-sort-keys": false
   },
   "rulesDirectory": []
 }

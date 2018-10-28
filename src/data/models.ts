@@ -25,7 +25,7 @@ export const TypeDefs = `
 
   type Query {
     getSamples: SampleData,
-    getFriend(id: ID): Friend
+    getFriend(email: String, id: ID): Friend
   }
 
   input FriendInput {
@@ -57,9 +57,18 @@ export const Samples: ISampleData = {
     friend: sampleFriendData
 }
 
-export interface FriendInput {
+type Pick<T, K extends keyof T> = {
+    [P in K]: T[P];
+}
+
+type OptionalPick<T, K extends keyof T> = {
+    [P in K]?: T[P];
+}
+
+export interface FriendObject {
     id?: string;
     email: string;
+    emails: IEmail[];
     firstName: string;
     lastName?: string;
     age: number,
@@ -67,6 +76,9 @@ export interface FriendInput {
     language?: string;
 }
 
+export type FriendInput = Pick<FriendObject, "id" | "email" | "firstName" | "lastName" | "age" | "gender" | "language">;
+
+export type IFriend = OptionalPick<FriendObject, "id" | "emails" | "firstName" | "lastName" | "age" | "gender" | "language">;
 export interface IEmail {
     email: string;
 }
@@ -95,3 +107,10 @@ export class Friend {
 export interface ISampleData {
     friend: Friend;
 }
+
+export interface IResolverDef {
+    Query: { [k: string]: any };
+    Mutation: { [k: string]: any };
+    [k: string]: any;
+}
+

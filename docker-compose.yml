@@ -15,7 +15,9 @@ services:
 
   # https://hub.docker.com/_/mongo-express/
   mongo-express:
-    image: mongo-express:0.49
+    image: uchilaka/mongo-express
+    build:
+      context: ./apps/mongo-express
     container_name: gql-mongo-ui
     restart: unless-stopped
     ports:
@@ -26,3 +28,6 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: test
     depends_on:
       - gql-mongo
+    # command:
+    #   - "sleep 10"
+    #   - "mongo-express"

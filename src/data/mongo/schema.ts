@@ -1,17 +1,33 @@
 import mongoose from "./mongoose";
 import { GraphQLSchema } from "graphql";
 import { makeExecutableSchema } from "graphql-tools";
-import { resolvers } from "./resolvers";
-import { TypeDefs as typeDefs } from "../models";
+// import { definedResolvers } from ".";
+import { resolvers, } from "./resolvers";
+import { TypeDefs as globalTypeDefs, IResolverDef } from "../models";
+
+const typeDefs = `
+${globalTypeDefs}
+
+# We need to tell the server which types represent the root query
+# and root mutation types. They are called RootQuery and RootMutation by convention
+schema {
+    query: Query,
+    mutation: Mutation
+}
+`;
 
 interface IMongoDef {
     Friend: mongoose.Model<mongoose.Document>
 }
 
+interface ISchemaDef {
+    typeDefs: string;
+    resolvers: IResolverDef
+}
+
 const emailSchema = new mongoose.Schema({
     email: String
 });
-export const Email = mongoose.model('email', emailSchema);
 
 const friendSchema = new mongoose.Schema({
     firstName: {
@@ -22,11 +38,16 @@ const friendSchema = new mongoose.Schema({
     gender: String,
     age: Number,
     language: String,
-    emails: [Email]
+    emails: [emailSchema]
 });
 
 export const MongoModel: IMongoDef = {
     Friend: mongoose.model('friends', friendSchema)
 };
 
-// export const schema: GraphQLSchema = makeExecutableSchema({ typeDefs, resolvers });
+export const schema: GraphQLSchema = makeExecutableSchema(<ISchemaDef>{
+    typeDefs,
+    resolvers
+});
+
+export default schema;
